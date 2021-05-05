@@ -12,7 +12,7 @@ class Scene2 extends Phaser.Scene{
         this.add.image(0,0,'background2').setOrigin(0);
         
         changementzone = this.physics.add.group();
-        player = this.physics.add.sprite(400,400,'personnage');
+        player = this.physics.add.sprite(1150,500,'personnage');
         // this.cameras.main.startFollow(player, true); pour scene2?
         
         this.anims.create({
@@ -51,7 +51,7 @@ class Scene2 extends Phaser.Scene{
         repeat: -1
         });
         
-        changementzone.create(432,559,'maptrigger');
+        changementzone.create(40,490,'maptrigger');
         
         this.physics.add.collider(player,changementzone,loadmap,null,this);
         
