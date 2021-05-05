@@ -8,8 +8,8 @@ class Scene1 extends Phaser.Scene{
     init(data){
     }
     preload(){   
-        this.load.image('background','assets/scene_1.png');
-        this.load.image('Personnage', 'assets/Personnage.png');
+        this.load.image('background','Assets/scene_1.png');
+        this.load.image('Personnage', 'Assets/Personnage.png');
     }
     create(){
         this.add.image(0,0,'background').setOrigin(0);
@@ -57,17 +57,20 @@ class Scene1 extends Phaser.Scene{
         
     
     update(){
+        
+        cursors = this.input.keyboard.createCursorKeys();
+        
         if (cursors.right.isDown){
-            player.setVelocityX(200);
+            player.setVelocityX(300);
         }
         else if (cursors.left.isDown){
-            player.setVelocityX(-200);
+            player.setVelocityX(-300);
         }
         else if (cursors.up.isDown){
-            player.setVelocityY(-200);
+            player.setVelocityY(-300);
         }
         else if (cursors.down.isDown){
-            player.setVelocityY(200);
+            player.setVelocityY(300);
         }
         else{
             player.setVelocity(0);

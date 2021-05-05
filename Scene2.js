@@ -1,4 +1,4 @@
-var player;
+/* var player;
 var cursors;
 
 class Scene1 extends Phaser.Scene{
@@ -8,14 +8,14 @@ class Scene1 extends Phaser.Scene{
     init(data){
     }
     preload(){   
-        this.load.image('background','assets/scene_2'.png');
+        this.load.image('background','assets/scene_2.png');
         this.load.image('Personnage', 'assets/Personnage.png');
     }
     create(){
         
 
             }
-        }
+        
     }
     
     update(){
