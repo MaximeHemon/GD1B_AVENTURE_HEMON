@@ -8,26 +8,53 @@ class Scene1 extends Phaser.Scene{
     init(data){
     }
     preload(){   
-
-    create(){
-
-        bloquant.setCollisionByExclusion(-1, true);
-        zone.setCollisionByExclusion(-1, true);
-
-        player = this.physics.add.sprite(XXX, XXX, 'player');
-
-        this.physics.add.collider(player, bloquant);
-        this.physics.add.overlap(player, zone, changementZone, null, this);
-
-        cursors = this.input.keyboard.createCursorKeys();
-        
-        function changementZone(player, zone){
-        //    if (player.y >= XXX && player.x >= XXX && player.x <= XXX){
-                this.scene.start("Scene2");
-                console.log("changement");
-            }
-        }
+        this.load.image('background','assets/scene_1.png');
+        this.load.image('Personnage', 'assets/Personnage.png');
     }
+    create(){
+        this.add.image(0,0,'background').setOrigin(0);
+        
+        player = this.physics.add.sprite(400,400,'Personnage');
+        // this.cameras.main.startFollow(player, true); pour scene2?
+        
+                this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('Personnage', { start: 0, end: 1 }),
+        frameRate: 5,
+        repeat: -1
+        });
+   
+        this.anims.create({
+        key: 'down',
+        frames: this.anims.generateFrameNumbers('Personnage', { start: 2, end: 3 }),
+        frameRate: 5,
+        repeat: -1
+       
+        });
+        
+        this.anims.create({
+        key: 'turn',
+        frames: [ { key: 'Personnage', frame: 4 } ],
+        frameRate: 20
+        });
+        
+        this.anims.create({
+        key: 'up',
+        frames: this.anims.generateFrameNumbers('Personnage', { start: 5, end: 6 }),
+        frameRate: 5,
+        repeat: -1
+       
+        });
+        
+        this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('Personnage', { start: 7, end: 8 }),
+        frameRate: 5,
+        repeat: -1
+        });
+        
+            }
+        
     
     update(){
         if (cursors.right.isDown){
