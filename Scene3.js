@@ -1,27 +1,21 @@
-var player;
-var cursors;
-var changementzone;
 
-
-class Scene1 extends Phaser.Scene{
+class Scene3 extends Phaser.Scene{
     constructor(){
-        super("scene1");
+        super("scene3");
     }
     init(data){
     }
     preload(){   
-        this.load.image('background','Assets/scene_1.png');
-        this.load.image('personnage', 'Assets/Personnage.png');
-        this.load.image('maptrigger','Assets/maptrigger.png');
+        this.load.image('background3','Assets/scene_3.png');
     }
     create(){
-        this.add.image(0,0,'background').setOrigin(0);
+        this.add.image(0,0,'background3').setOrigin(0);
         
         changementzone = this.physics.add.group();
         player = this.physics.add.sprite(400,400,'personnage');
         // this.cameras.main.startFollow(player, true); pour scene2?
         
-                this.anims.create({
+        this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('personnage', { start: 0, end: 1 }),
         frameRate: 5,
@@ -62,7 +56,7 @@ class Scene1 extends Phaser.Scene{
         this.physics.add.collider(player,changementzone,loadmap,null,this);
         
         function loadmap(player,changementzone){
-        this.scene.start("scene2"); 
+        this.scene.start("scene1"); 
         }
         
         
