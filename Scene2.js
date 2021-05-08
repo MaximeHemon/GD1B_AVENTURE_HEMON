@@ -6,14 +6,17 @@ class Scene2 extends Phaser.Scene{
     init(data){
     }
     preload(){   
-        this.load.image('background2','Assets/scene_2.png');
+        this.load.image('background2','Assets/scene_2_2.png');
     }
     create(){
+        
+        this.cameras.main.setBounds(0, 0, 3000, 3000);
+        this.physics.world.setBounds(0, 0, 2560, 720);
+        
         this.add.image(0,0,'background2').setOrigin(0);
         
         changementzone = this.physics.add.group();
-        player = this.physics.add.sprite(1150,500,'personnage');
-        // this.cameras.main.startFollow(player, true); pour scene2?
+        player = this.physics.add.sprite(2430,500,'personnage');
         
         this.anims.create({
         key: 'left',
@@ -54,6 +57,8 @@ class Scene2 extends Phaser.Scene{
         changementzone.create(40,490,'maptrigger');
         
         this.physics.add.collider(player,changementzone,loadmap,null,this);
+        
+        this.cameras.main.startFollow(player, true);
         
         function loadmap(player,changementzone){
         this.scene.start("scene3"); 

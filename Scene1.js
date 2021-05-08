@@ -57,9 +57,7 @@ class Scene1 extends Phaser.Scene{
         this.physics.add.overlap(player,mob,Hit,null,this);
         
         
-        // this.cameras.main.startFollow(player, true); pour scene2?
-        
-                this.anims.create({
+        this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('personnage', { start: 0, end: 1 }),
         frameRate: 5,
