@@ -10,6 +10,8 @@ var gameOver = false;
 var invincible= false;
 var compteurInvincible= 150;
 var compteurFrames= 150;
+var paddle;
+var padConnected= false;
 
 
 
@@ -120,53 +122,90 @@ class Scene1 extends Phaser.Scene{
                     hp1.setAlpha(0);
                     gameOver = true;
                 }
-            }
-       
-        
+            }        
             }
         
-    }
+        }
         update(){
+            
         
+        //Controles Manette
         if (gameOver)
             {
             player.setTint(0xff0000);
             return;
         }
         
-        if(invincible == true){
-            
-            compteurInvincible-- ;
-            compteurFrames --;
-            if (compteurFrames ==125){
-            player.setAlpha(0);
-            }
-            if (compteurFrames ==100){
-            player.setAlpha(1);
-            }
-            if (compteurFrames ==75){
-            player.setAlpha(0);
-            }
-            if (compteurFrames ==50){
-            player.setAlpha(1);
-            }
-            if (compteurFrames ==25){
-            player.setAlpha(0);
-            }
-         
-                
-            if (compteurFrames <= 0){
-            player.setAlpha(1);    
-            compteurFrames = 150;            
-            }   
-    
-           
-            if(compteurInvincible == 0){
-                compteurInvincible = 150;
-                invincible = false ;
-            } 
+        this.input.gamepad.once('connected', function (pad) {
+        paddle = pad;
+        padConnected = true;
+        });
+        
+        if (padConnected){
+        if (paddle.left)
+        {
+        player.setVelocityX(-300);
+
+        //player.anims.play('left', true);
+        }
+        else if (paddle.right)
+        {
+        player.setVelocityX(300);
+        }
+        //player.anims.play('right', true);
+        else{
+        player.setVelocityX(0);
+        }    
+        //player.anims.play('turn');
+        if (paddle.up){
+        player.setVelocityY(-300);
+        }  
+        else{
+        player.setVelocityY(0);
+        }
+        if (paddle.down){
+        player.setVelocityY(300);
+        }
+        else{
+        player.setVelocityY(0);
         }
         
+        }
+        
+        //Frames Invincibles            
+        if(invincible == true){
+            
+        compteurInvincible-- ;
+        compteurFrames --;
+        if (compteurFrames ==125){
+        player.setAlpha(0);
+        }
+        if (compteurFrames ==100){
+        player.setAlpha(1);
+        }
+        if (compteurFrames ==75){
+        player.setAlpha(0);
+        }
+        if (compteurFrames ==50){
+        player.setAlpha(1);
+        }
+        if (compteurFrames ==25){
+        player.setAlpha(0);
+        }
+         
+                
+        if (compteurFrames <= 0){
+        player.setAlpha(1);    
+        compteurFrames = 150;            
+        }   
+      
+        if(compteurInvincible == 0){
+        compteurInvincible = 150;
+        invincible = false ;
+        } 
+        }
+        
+        //Controles Clavier
         if (cursors.right.isDown){
             player.setVelocityX(300);
         }
