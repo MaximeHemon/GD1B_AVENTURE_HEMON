@@ -50,7 +50,7 @@ class Scene1 extends Phaser.Scene{
             
             targets: mob,
             props: {
-                x: {value: 700, duration: 700},
+                x: {value: 700, duration: 1000},
             },
             yoyo: true,
                 repeat: -1
